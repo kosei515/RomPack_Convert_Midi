@@ -3376,7 +3376,7 @@ namespace RomPackMidi
                         case 15:
                         case 16:
                             if (rhT == 0) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
-                            if (rhT == 72) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
+                            if (rhT == 72) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co4 + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
 
                             if (rhT == 24) if (co0 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co0 + "," + pro.Acc[1] + "," + pro.Acc[2];  pro.di++; }
                             if (rhT == 24) if (co1 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co1 + "," + pro.Acc[1] + "," + pro.Acc[2];  pro.di++; }
