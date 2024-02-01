@@ -1224,34 +1224,36 @@ namespace RomPackMidi
                             break;
                         case 0x20:
                         case 0x21:
-                            pro.data4[pro.di] = "2," + t + ",104";  pro.di++;
+                            pro.data4[pro.di] = "2," + t + ",98";  pro.di++;
                             break;
                         case 0x22:
                         case 0x23:
-                            pro.data4[pro.di] = "2," + t + ",112";  pro.di++;
+                            pro.data4[pro.di] = "2," + t + ",106";  pro.di++;
                             break;
                         case 0x24:
                         case 0x25:
-                            pro.data4[pro.di] = "2," + t + ",120";  pro.di++;
+                            pro.data4[pro.di] = "2," + t + ",118";  pro.di++;
                             break;
                         case 0x26:
                         case 0x27:
-                            pro.data4[pro.di] = "2," + t + ",132";  pro.di++;
+                            pro.data4[pro.di] = "2," + t + ",126";  pro.di++;
                             break;
                         case 0x28:
                         case 0x29:
-                            pro.data4[pro.di] = "2," + t + ",146";  pro.di++;
+                            pro.data4[pro.di] = "2," + t + ",136";  pro.di++;
                             break;
                         case 0x2A:
                         case 0x2B:
-                            pro.data4[pro.di] = "2," + t + ",162";  pro.di++;
+                            pro.data4[pro.di] = "2," + t + ",148";  pro.di++;
                             break;
                         case 0x2C:
                         case 0x2D:
-                            pro.data4[pro.di] = "2," + t + ",178";  pro.di++;
+                            pro.data4[pro.di] = "2," + t + ",162";  pro.di++;
                             break;
                         case 0x2E:
                         case 0x2F:
+                            pro.data4[pro.di] = "2," + t + ",176"; pro.di++;
+                            break;
                         case 0x30:
                         case 0x31:
                         case 0x32:
@@ -1273,8 +1275,7 @@ namespace RomPackMidi
                         case 0x42:
                         case 0x43:
                         case 0x44:
-
-                            pro.data4[pro.di] = "2," + t + ",184";  pro.di++;
+                            pro.data4[pro.di] = "2," + t + ",188";  pro.di++;
                             break;
                     }
                 }
@@ -3421,7 +3422,7 @@ namespace RomPackMidi
                         case 13:
                         case 14:
                             if (rhT == 96) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
-                            if (rhT == 184) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co4 + "," + pro.Bass[1] + "," + (pro.Bass[2] + 10);  pro.di++; }
+                            if (rhT == 184) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co4 + "," + pro.Bass[1] + "," + (pro.Bass[2] + 2);  pro.di++; }
 
                             if (rhT == 96) if (co0 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co0 + "," + pro.Acc[1] + "," + pro.Acc[2];  pro.di++; }
                             if (rhT == 96) if (co1 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co1 + "," + pro.Acc[1] + "," + pro.Acc[2];  pro.di++; }
