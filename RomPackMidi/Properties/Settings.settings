@@ -1,0 +1,159 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RomPackMidi.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Piano1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Harpsichord1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="Organ1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="Violin1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">41</Value>
+    </Setting>
+    <Setting Name="Flute1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">72</Value>
+    </Setting>
+    <Setting Name="Clarinet1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">71</Value>
+    </Setting>
+    <Setting Name="Trumpet1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">57</Value>
+    </Setting>
+    <Setting Name="Celesta1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">11</Value>
+    </Setting>
+    <Setting Name="Bass1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">75</Value>
+    </Setting>
+    <Setting Name="Acc1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">85</Value>
+    </Setting>
+    <Setting Name="Rhyrhm1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="MidiOut" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\</Value>
+    </Setting>
+    <Setting Name="Violin2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">110</Value>
+    </Setting>
+    <Setting Name="Violin3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="Violin4" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Violin0" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="Trumpet0" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">56</Value>
+    </Setting>
+    <Setting Name="Trumpet2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">110</Value>
+    </Setting>
+    <Setting Name="Trumpet3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="Trumpet4" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Rhyrhm0" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Piano0" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Piano2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">120</Value>
+    </Setting>
+    <Setting Name="Piano3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="Piano4" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Organ0" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="Organ2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">120</Value>
+    </Setting>
+    <Setting Name="Organ3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">105</Value>
+    </Setting>
+    <Setting Name="Organ4" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Harpsichord0" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="Harpsichord2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">110</Value>
+    </Setting>
+    <Setting Name="Harpsichord3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="Harpsichord4" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Celesta0" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">11</Value>
+    </Setting>
+    <Setting Name="Celesta2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">110</Value>
+    </Setting>
+    <Setting Name="Celesta3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="Celesta4" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Flute0" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">73</Value>
+    </Setting>
+    <Setting Name="Flute2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="Flute3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">85</Value>
+    </Setting>
+    <Setting Name="Flute4" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Clarinet0" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">71</Value>
+    </Setting>
+    <Setting Name="Clarinet2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">110</Value>
+    </Setting>
+    <Setting Name="Clarinet3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="Clarinet4" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Acc0" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">62</Value>
+    </Setting>
+    <Setting Name="Acc2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="Bass0" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">62</Value>
+    </Setting>
+    <Setting Name="Bass2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">45</Value>
+    </Setting>
+    <Setting Name="MidiOut2" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DefFol" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

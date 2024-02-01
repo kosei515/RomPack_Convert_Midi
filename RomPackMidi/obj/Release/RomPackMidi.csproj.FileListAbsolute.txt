@@ -1,0 +1,11 @@
+C:\Users\kosei\source\repos\RomPackMidi\RomPackMidi\bin\Release\RomPackMidi.exe.config
+C:\Users\kosei\source\repos\RomPackMidi\RomPackMidi\bin\Release\RomPackMidi.exe
+C:\Users\kosei\source\repos\RomPackMidi\RomPackMidi\bin\Release\RomPackMidi.pdb
+C:\Users\kosei\source\repos\RomPackMidi\RomPackMidi\obj\Release\RomPackMidi.csproj.AssemblyReference.cache
+C:\Users\kosei\source\repos\RomPackMidi\RomPackMidi\obj\Release\RomPackMidi.Form1.resources
+C:\Users\kosei\source\repos\RomPackMidi\RomPackMidi\obj\Release\RomPackMidi.Form2.resources
+C:\Users\kosei\source\repos\RomPackMidi\RomPackMidi\obj\Release\RomPackMidi.Properties.Resources.resources
+C:\Users\kosei\source\repos\RomPackMidi\RomPackMidi\obj\Release\RomPackMidi.csproj.GenerateResource.cache
+C:\Users\kosei\source\repos\RomPackMidi\RomPackMidi\obj\Release\RomPackMidi.csproj.CoreCompileInputs.cache
+C:\Users\kosei\source\repos\RomPackMidi\RomPackMidi\obj\Release\RomPackMidi.exe
+C:\Users\kosei\source\repos\RomPackMidi\RomPackMidi\obj\Release\RomPackMidi.pdb

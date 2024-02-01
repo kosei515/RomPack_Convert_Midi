@@ -1,0 +1,4 @@
+﻿  midi4-2.cpp
+  midi4.cpp
+  コードを生成中...
+LINK : fatal error LNK1104: ファイル 'MIDIData.dll' を開くことができません。
