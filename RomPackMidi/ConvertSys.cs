@@ -616,7 +616,7 @@ namespace RomPackMidi
                             break;
                         case 0xA:
                             pro.data4[pro.di] = " //Repeat 3";  pro.di++;
-                            re2 = x;
+                            //re2 = x;
                             re3 = x;
                             if (reE == 1 && reS == 1) x = re0;
                             reE = 0;
@@ -1127,7 +1127,7 @@ namespace RomPackMidi
                             break;
                         case 0xA:
                             pro.data4[pro.di] = " //Repeat 3";  pro.di++;
-                            re2 = x;
+                            //re2 = x;
                             re3 = x;
                             if (reE == 1 && reS == 1) x = re0;
                             reE = 0;
