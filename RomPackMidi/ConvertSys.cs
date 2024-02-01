@@ -44,8 +44,8 @@ namespace RomPackMidi
         public void NoteCon()
         {
 
-            int reS = 0, reE = 0, re0 = 0, re1 = 0, re2 = 0, re3 = 0, re4 = 0, re5 = 0, re6 = 0, re7 = 0, re8 = 0, reN = 0, reP = 0;
-            int t = 0, up = 0, no = 0;
+            int reS = 0, reE = 0, re0 = 0, re1 = 0, re2 = 0, re3 = 0, re4 = 0, re5 = 0, re6 = 0, re7 = 0, re8 = 0, reN = 0, reP = 0, reF = 0;
+            int t = 0, up = 0, no = 0, p = 0;
             int ch = 0;
             
 
@@ -229,6 +229,7 @@ namespace RomPackMidi
                     {
                         t += pro.data1[2, x];
                     }
+                    p = 0;
                 }
 
                 //Effect
@@ -583,6 +584,7 @@ namespace RomPackMidi
                             reS = 0;
                             reN = 0;
                             reP = 0;
+                            reF = 0;
                             break;
                         case 0x1:
                             pro.data4[pro.di] = " //Repeat";  pro.di++;
@@ -613,10 +615,11 @@ namespace RomPackMidi
                             re2 = x;
                             if(pro.data1[0, x - 1] != 0x8F && reE == 1 && reS == 1) x = re0;
                             reE = 0;
+                            reF = 1;
                             break;
                         case 0xA:
                             pro.data4[pro.di] = " //Repeat 3";  pro.di++;
-                            //re2 = x;
+                            if(reF == 0)re2 = x;
                             re3 = x;
                             if (reE == 1 && reS == 1) x = re0;
                             reE = 0;
@@ -655,11 +658,11 @@ namespace RomPackMidi
                 }
 
 
-                if (pro.data1[0, x] == 0xF0)
+                if (pro.data1[0, x] == 0xF0 && p == 0)
                 {
                     //pro.data4[pro.di] = "5," + t + "\r\n"; pro.di++;
                     pro.data4[pro.di] = " //End\r\n\r\n";  pro.di++;
-
+                    p = 1;
                     ch++;
                     if (ch >= 2)
                     {
@@ -676,7 +679,7 @@ namespace RomPackMidi
 
         public void CodeCon()
         {
-            int reS = 0, reE = 0, re0 = 0, re1 = 0, re2 = 0, re3 = 0, re4 = 0, re5 = 0, re6 = 0, re7 = 0, re8 = 0, reN = 0, reP = 0;
+            int reS = 0, reE = 0, re0 = 0, re1 = 0, re2 = 0, re3 = 0, re4 = 0, re5 = 0, re6 = 0, re7 = 0, re8 = 0, reN = 0, reP = 0, reF = 0;
             int t = 0, t2 = 0, t3 = 0, cod = 0, rhF = 0;
             //int ch = 2;
             int co = 0, co0 = 0, co1 = 0, co2 = 0, co3 = 0, co4 = 0;
@@ -1094,6 +1097,7 @@ namespace RomPackMidi
                             reS = 0;
                             reN = 0;
                             reP = 0;
+                            reF = 0;
                             break;
                         case 0x1:
                             pro.data4[pro.di] = " //Repeat";  pro.di++;
@@ -1109,25 +1113,29 @@ namespace RomPackMidi
                             break;
                         case 0x8:
                             pro.data4[pro.di] = " //Repeat 1";  pro.di++;
-                            re1 = x;
-                            reS = 1;
-                            if (reN == 1) x = re2;
-                            if (reN == 2) x = re3;
-                            if (reN == 3) x = re4;
-                            if (reN == 4) x = re5;
-                            if (reN == 5) x = re6;
-                            if (reN == 6) x = re7;
-                            if (reN == 7) x = re8;
+                            if (pro.data1[0, x - 1] != 0x1F)
+                            {
+                                re1 = x;
+                                reS = 1;
+                                if (reN == 1) x = re2;
+                                if (reN == 2) x = re3;
+                                if (reN == 3) x = re4;
+                                if (reN == 4) x = re5;
+                                if (reN == 5) x = re6;
+                                if (reN == 6) x = re7;
+                                if (reN == 7) x = re8;
+                            }
                             break;
                         case 0x9:
                             pro.data4[pro.di] = " //Repeat 2";  pro.di++;
                             re2 = x;
                             if (reE == 1 && pro.data1[0, x - 1] != 0x8F && reS == 1) x = re0;
                             reE = 0;
+                            reF = 1;
                             break;
                         case 0xA:
                             pro.data4[pro.di] = " //Repeat 3";  pro.di++;
-                            //re2 = x;
+                            if (reF == 0) re2 = x;
                             re3 = x;
                             if (reE == 1 && reS == 1) x = re0;
                             reE = 0;
@@ -2944,10 +2952,10 @@ namespace RomPackMidi
                             if (rhT == 144) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co4 + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
                             if (rhT == 168) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
 
-                            if (rhT == 40) if (co0 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co0 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 10);  pro.di++; }
-                            if (rhT == 40) if (co1 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co1 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 10);  pro.di++; }
-                            if (rhT == 40) if (co2 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co2 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 10);  pro.di++; }
-                            if (rhT == 40) if (co3 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co3 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 10);  pro.di++; }
+                            if (rhT == 40) if (co0 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co0 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 2);  pro.di++; }
+                            if (rhT == 40) if (co1 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co1 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 2);  pro.di++; }
+                            if (rhT == 40) if (co2 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co2 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 2);  pro.di++; }
+                            if (rhT == 40) if (co3 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co3 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 2);  pro.di++; }
 
                             if (rhT == 72) if (co0 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co0 + "," + pro.Acc[1] + "," + pro.Acc[2];  pro.di++; }
                             if (rhT == 72) if (co1 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co1 + "," + pro.Acc[1] + "," + pro.Acc[2];  pro.di++; }
@@ -2959,10 +2967,10 @@ namespace RomPackMidi
                             if (rhT == 120) if (co2 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co2 + "," + pro.Acc[1] + "," + pro.Acc[2];  pro.di++; }
                             if (rhT == 120) if (co3 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co3 + "," + pro.Acc[1] + "," + pro.Acc[2];  pro.di++; }
 
-                            if (rhT == 160) if (co0 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co0 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 10);  pro.di++; }
-                            if (rhT == 160) if (co1 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co1 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 10);  pro.di++; }
-                            if (rhT == 160) if (co2 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co2 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 10);  pro.di++; }
-                            if (rhT == 160) if (co3 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co3 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 10);  pro.di++; }
+                            if (rhT == 160) if (co0 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co0 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 2);  pro.di++; }
+                            if (rhT == 160) if (co1 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co1 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 2);  pro.di++; }
+                            if (rhT == 160) if (co2 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co2 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 2);  pro.di++; }
+                            if (rhT == 160) if (co3 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co3 + "," + pro.Acc[1] + "," + (pro.Bass[2] + 2);  pro.di++; }
                             break;
                         case 7:
                             if (rhT == 0) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
@@ -3286,11 +3294,11 @@ namespace RomPackMidi
                         case 13:
                         case 14:
                             if (rhT == 0) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
-                            if (rhT == 40) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co4 + "," + pro.Bass[1] + "," + (pro.Bass[2] + 10);  pro.di++; }
+                            if (rhT == 40) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co4 + "," + pro.Bass[1] + "," + (pro.Bass[2] + 2);  pro.di++; }
                             if (rhT == 48) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co4 + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
                             if (rhT == 72) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
                             if (rhT == 96) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
-                            if (rhT == 136) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co4 + "," + pro.Bass[1] + "," + (pro.Bass[2] + 10);  pro.di++; }
+                            if (rhT == 136) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co4 + "," + pro.Bass[1] + "," + (pro.Bass[2] + 2);  pro.di++; }
                             if (rhT == 144) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co4 + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
                             if (rhT == 168) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
 

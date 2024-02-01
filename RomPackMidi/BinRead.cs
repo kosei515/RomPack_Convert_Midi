@@ -74,7 +74,7 @@ namespace RomPackMidi
                 m += 3;
                 q++;
                 k++;
-                while (!(bs[k - 2] == 0xF0 && bs[k] == 0x00 && p == 2))
+                while (!(bs[k - 2] == 0xF0 && p == 2))
                 {
                     pro.SongList[i, m] = bs[k];
                     pro.data2[i, p, q] = bs[k];
@@ -91,7 +91,7 @@ namespace RomPackMidi
                 pro.data2[i, 0, q] = bs[k - 2];
                 q++;
                 m++;
-                while (!(bs[k - 2] == 0x10 && bs[k - 1] == 0x00 && bs[k] == 0x00)) { k++; }
+                while (!((bs[k - 2] == 0x10 || (bs[k - 3] == 0x00 && bs[k + 1] == 0x60)) && bs[k - 1] == 0x00 && bs[k] == 0x00)) { k++; }
                 pro.SongList[i, m] = bs[k - 2];
                 pro.SongList[i, m + 1] = bs[k - 1];
                 pro.SongList[i, m + 2] = bs[k];
