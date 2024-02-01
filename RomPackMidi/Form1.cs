@@ -47,7 +47,7 @@ namespace RomPackMidi
         public int[] MTrack = new int[5] {3, 4, 5, 6, 2}; // M1 M2 CodeBass CodeAcc CodeM
         public int CodeM = 1; // CodeM On1 Off0
         public int CodeV = 0; // CodeM Vol
-        public int Rev = 30; // Reverb
+        public int Rev = 0; // Reverb
 
         public string OpFile;
         public byte[,] SongList = new byte[30,100000];
