@@ -28,7 +28,7 @@ namespace RomPackMidi
             pro.data4[pro.di] = "6,0," + pro.MTrack[2] + ",7,127"; pro.di++;
             pro.data4[pro.di] = "6,0," + pro.MTrack[3] + ",7,127"; pro.di++;
             pro.data4[pro.di] = "6,0," + pro.MTrack[4] + ",7," + pro.CodeV; pro.di++;
-            if(pro.CodeV == 0) pro.data4[pro.di] = "6,0," + pro.MTrack[4] + ",0,120"; pro.di++;
+            if (pro.CodeV == 0) { pro.data4[pro.di] = "6,0," + pro.MTrack[4] + ",0,120"; pro.di++; }
 
             if (pro.Rev >= 1)
             {
@@ -688,7 +688,6 @@ namespace RomPackMidi
         {
             int reS = 0, reE = 0, re0 = 0, re1 = 0, re2 = 0, re3 = 0, re4 = 0, re5 = 0, re6 = 0, re7 = 0, re8 = 0, reN = 0, reP = 0, reF = 0, reG = 0;
             int t = 0, t2 = 0, t3 = 0, cod = 0, rhF = 0;
-            //int ch = 2;
             int co = 0, co0 = 0, co1 = 0, co2 = 0, co3 = 0, co4 = 0;
 
             pro.data4[pro.di] = "1,0,9," + pro.Rhyrhm[0];  pro.di++;
@@ -1153,7 +1152,6 @@ namespace RomPackMidi
                             re3 = x;
                             if (reE == 1 && reS == 1) x = re0;
                             reE = 0;
-                            reF = 0;
                             break;
                         case 0xB:
                             pro.data4[pro.di] = " //Repeat 4";  pro.di++;
@@ -1315,7 +1313,7 @@ namespace RomPackMidi
             }
 
             int z = 0, p = 0;
-            int rh = 0, rhT = 0, fil = 0;
+            int rh = 0, rhT = 0, fil = 0, rh2 = 0;
 
 
             for (int y = 0; y < t3; y++)
@@ -1409,71 +1407,72 @@ namespace RomPackMidi
                     //Rhythm
                     if (pro.data3[0, z] == 0x50)
                     {
+                        rh2 = rh;
                         switch (pro.data3[1, z])
                         {
                             case 0x00:
                                 rh = 1;
-                                pro.data4[pro.di] = " //Rhrthm = Rock  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Rock  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x01:
                                 rh = 2;
-                                pro.data4[pro.di] = " //Rhrthm = Rock'n'Roll  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Rock'n'Roll  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x10:
                                 rh = 3;
-                                pro.data4[pro.di] = " //Rhrthm = Disco  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Disco  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x11:
                                 rh = 4;
-                                pro.data4[pro.di] = " //Rhrthm = 16-Beat  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = 16-Beat  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x20:
                                 rh = 5;
-                                pro.data4[pro.di] = " //Rhrthm = Swing 2-Beat  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Swing 2-Beat  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x21:
                                 rh = 6;
-                                pro.data4[pro.di] = " //Rhrthm = Swing 4-Beat  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Swing 4-Beat  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x30:
                                 rh = 7;
-                                pro.data4[pro.di] = " //Rhrthm = Samba  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Samba  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x31:
                                 rh = 8;
-                                pro.data4[pro.di] = " //Rhrthm = Latin Rock  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Latin Rock  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x40:
                                 rh = 9;
-                                pro.data4[pro.di] = " //Rhrthm = Bossa Nova  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Bossa Nova  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x41:
                                 rh = 10;
-                                pro.data4[pro.di] = " //Rhrthm = Beguine  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Beguine  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x50:
                                 rh = 11;
-                                pro.data4[pro.di] = " //Rhrthm = Tango  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Tango  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x51:
                                 rh = 12;
-                                pro.data4[pro.di] = " //Rhrthm = March  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = March  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x60:
                                 rh = 13;
-                                pro.data4[pro.di] = " //Rhrthm = Slow Rock  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Slow Rock  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x61:
                                 rh = 14;
-                                pro.data4[pro.di] = " //Rhrthm = Ballad  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Ballad  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x70:
                                 rh = 15;
-                                pro.data4[pro.di] = " //Rhrthm = Waltz  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Waltz  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0x71:
                                 rh = 16;
-                                pro.data4[pro.di] = " //Rhrthm = Rock Waltz  " + pro.data3[2, z];  pro.di++;
+                                pro.data4[pro.di] = " //Rhrthm = Rock Waltz  " + pro.data3[2, z]; pro.di++;
                                 break;
                             case 0xF0:
                             case 0xF1:
@@ -1485,6 +1484,8 @@ namespace RomPackMidi
                         }
                         fil = 0;
                         p = 1;
+                        if (rh >= 15 && rh2 <= 14) { pro.data4[pro.di] = "4," + pro.data3[2, z] + ",3,2,24,8"; pro.di++; }
+                        if (rh <= 14 && rh2 >= 15) { pro.data4[pro.di] = "4," + pro.data3[2, z] + ",4,2,24,8"; pro.di++; }
                     }
                     //Count Reset
                     if (pro.data3[0, z] == 0x90 && z >= 3)
