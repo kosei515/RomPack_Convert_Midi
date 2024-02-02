@@ -27,9 +27,9 @@ namespace RomPackMidi
         public string[] data4 = new string[10000000];
         public int line0, p = 0, b, di = 0, da = 0, rn = 0, num = 0, log = 0;
         public string FileName = "RomMidi";
-        string MakeMidi = "..\\..\\midi4.exe";
+        string MakeMidi = ".\\midi4.exe";
 
-        public string MIdiOut = "..\\..\\..\\";
+        public string MIdiOut = "..\\..\\..\\..\\";
 
         public int[] Piano = new int[5];
         public int[] Harpsichord = new int[5];
@@ -174,6 +174,7 @@ namespace RomPackMidi
 
                 int Len1 = 0, se = 0;
                 char Len2 = ' ', Len3 = ' ', Len22 = ' ', Len33 = ' ';
+                if (checkBox1.Checked == false) se = 4;
 
                 for (int i = 0; i < One0; i++)
                 {
@@ -212,63 +213,66 @@ namespace RomPackMidi
 
         private void button4_Click(object sender, EventArgs e)
         {
-
-            if (checkBox5.Checked == false)
+            if (comboBox1.SelectedIndex != -1)
             {
-                textBox1.Text = textBox1.Text.Replace("\r\n", "");
-                textBox1.Text = textBox1.Text.Replace(" ", "");
-
-                if (textBox1.Text != "")
+                if (checkBox5.Checked == false)
                 {
-                    int One0 = textBox1.TextLength;
+                    textBox1.Text = textBox1.Text.Replace("\r\n", "");
+                    textBox1.Text = textBox1.Text.Replace(" ", "");
 
-                    int Len1 = 0, se = 0;
-                    char Len2 = ' ', Len3 = ' ';
-
-                    for (int i = 0; i < One0; i++)
+                    if (textBox1.Text != "")
                     {
-                        char[] Len0 = textBox1.Text.ToCharArray();
-                        if (Len1 == 6) Len2 = Len0[i - 6];
-                        else if (Len1 == 1) Len3 = Len0[i];
+                        int One0 = textBox1.TextLength;
 
-                        if (se == 1 || se == 3)
+                        int Len1 = 0, se = 0;
+                        char Len2 = ' ', Len3 = ' ';
+                        if (checkBox1.Checked == false) se = 4;
+
+                        for (int i = 0; i < One0; i++)
                         {
-                            se++;
-                            textBox1.Text = textBox1.Text.Insert(i - 1, "\r\n");
-                            One0 += 2;
-                            i += 2;
+                            char[] Len0 = textBox1.Text.ToCharArray();
+                            if (Len1 == 6) Len2 = Len0[i - 6];
+                            else if (Len1 == 1) Len3 = Len0[i];
+
+                            if (se == 1 || se == 3)
+                            {
+                                se++;
+                                textBox1.Text = textBox1.Text.Insert(i - 1, "\r\n");
+                                One0 += 2;
+                                i += 2;
+                            }
+                            if (Len1 >= 6 && (se == 0 || se == 2))
+                            {
+                                textBox1.Text = textBox1.Text.Insert(i, "\r\n");
+                                One0 += 2;
+                                i += 2;
+                                if (Len2 == 'F' && Len3 == '0') se++;
+                                Len1 = 0;
+                            }
+                            if (Len1 >= 4 && se == 4)
+                            {
+                                textBox1.Text = textBox1.Text.Insert(i, "\r\n");
+                                One0 += 2;
+                                i += 2;
+                                Len1 = 0;
+                            }
+                            Len1++;
                         }
-                        if (Len1 >= 6 && (se == 0 || se == 2))
-                        {
-                            textBox1.Text = textBox1.Text.Insert(i, "\r\n");
-                            One0 += 2;
-                            i += 2;
-                            if (Len2 == 'F' && Len3 == '0') se++;
-                            Len1 = 0;
-                        }
-                        if (Len1 >= 4 && se == 4)
-                        {
-                            textBox1.Text = textBox1.Text.Insert(i, "\r\n");
-                            One0 += 2;
-                            i += 2;
-                            Len1 = 0;
-                        }
-                        Len1++;
                     }
+                    textBox2.Text = "";
+
                 }
-                textBox2.Text = "";
 
+                ConvertSys ConSys = new ConvertSys(this);
+                this.DataCon();
+                p = 0;
+                di = 0;
+                ConSys.SetCon();
+                if (checkBox1.Checked == true) ConSys.NoteCon();
+                if (checkBox2.Checked == true) ConSys.CodeCon();
+                da = di;
+                SaveF();
             }
-
-            ConvertSys ConSys = new ConvertSys(this);
-            this.DataCon();
-            p = 0;
-            di = 0;
-            ConSys.SetCon();
-            if (checkBox1.Checked == true) ConSys.NoteCon();
-            if (checkBox2.Checked == true) ConSys.CodeCon();
-            da = di;
-            SaveF();
         }
 
 
@@ -483,7 +487,7 @@ namespace RomPackMidi
         {
 
             FileName = textBox3.Text;
-            string file = "../../RomMidi.txt";
+            string file = "..\\..\\..\\RomMidi.txt";
             StreamWriter sw = new StreamWriter(file, false, Encoding.GetEncoding("utf-8"));
             for (int r = 0; r < da; r++)
             {

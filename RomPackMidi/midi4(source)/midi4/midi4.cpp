@@ -9,7 +9,7 @@
 int main() {
 	FILE* fp; // FILE型構造体
 	errno_t err; // errno_t型(int型)
-	char fname[] = "..\\..\\RomMidi.txt";
+	char fname[] = "..\\..\\..\\RomMidi.txt";
 	char str[N];
 
 	err = fopen_s(&fp, fname, "r"); // ファイルを開く。失敗するとNULLを返す。
