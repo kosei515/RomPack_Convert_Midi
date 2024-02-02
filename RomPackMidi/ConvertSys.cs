@@ -44,7 +44,7 @@ namespace RomPackMidi
         public void NoteCon()
         {
 
-            int reS = 0, reE = 0, re0 = 0, re1 = 0, re2 = 0, re3 = 0, re4 = 0, re5 = 0, re6 = 0, re7 = 0, re8 = 0, reN = 0, reP = 0, reF = 0;
+            int reS = 0, reE = 0, re0 = 0, re1 = 0, re2 = 0, re3 = 0, re4 = 0, re5 = 0, re6 = 0, re7 = 0, re8 = 0, reN = 0, reP = 0, reF = 0, reG = 0;
             int t = 0, up = 0, no = 0, p = 0;
             int ch = 0;
             
@@ -613,9 +613,16 @@ namespace RomPackMidi
                         case 0x9:
                             pro.data4[pro.di] = " //Repeat 2";  pro.di++;
                             re2 = x;
-                            if(pro.data1[0, x - 1] != 0x8F && reE == 1 && reS == 1) x = re0;
+                            if (reE == 1 && pro.data1[0, x - 1] != 0x8F && reS == 1 && reG == 0) x = re0;
+                            if (reG == 1)
+                            {
+                                re3 = x;
+                                if (reE == 1 && pro.data1[0, x - 1] != 0x8F && reS == 1) x = re0;
+                                reG = 0;
+                            }
                             reE = 0;
                             reF = 1;
+                            reG++;
                             break;
                         case 0xA:
                             pro.data4[pro.di] = " //Repeat 3";  pro.di++;
@@ -679,7 +686,7 @@ namespace RomPackMidi
 
         public void CodeCon()
         {
-            int reS = 0, reE = 0, re0 = 0, re1 = 0, re2 = 0, re3 = 0, re4 = 0, re5 = 0, re6 = 0, re7 = 0, re8 = 0, reN = 0, reP = 0, reF = 0;
+            int reS = 0, reE = 0, re0 = 0, re1 = 0, re2 = 0, re3 = 0, re4 = 0, re5 = 0, re6 = 0, re7 = 0, re8 = 0, reN = 0, reP = 0, reF = 0, reG = 0;
             int t = 0, t2 = 0, t3 = 0, cod = 0, rhF = 0;
             //int ch = 2;
             int co = 0, co0 = 0, co1 = 0, co2 = 0, co3 = 0, co4 = 0;
@@ -1129,9 +1136,16 @@ namespace RomPackMidi
                         case 0x9:
                             pro.data4[pro.di] = " //Repeat 2";  pro.di++;
                             re2 = x;
-                            if (reE == 1 && pro.data1[0, x - 1] != 0x8F && reS == 1) x = re0;
+                            if (reE == 1 && pro.data1[0, x - 1] != 0x8F && reS == 1 && reG == 0) x = re0;
+                            if (reG == 1)
+                            {
+                                re3 = x;
+                                if (reE == 1 && pro.data1[0, x - 1] != 0x8F && reS == 1) x = re0;
+                                reG = 0;
+                            }
                             reE = 0;
                             reF = 1;
+                            reG++;
                             break;
                         case 0xA:
                             pro.data4[pro.di] = " //Repeat 3";  pro.di++;
@@ -1139,6 +1153,7 @@ namespace RomPackMidi
                             re3 = x;
                             if (reE == 1 && reS == 1) x = re0;
                             reE = 0;
+                            reF = 0;
                             break;
                         case 0xB:
                             pro.data4[pro.di] = " //Repeat 4";  pro.di++;
@@ -3376,7 +3391,7 @@ namespace RomPackMidi
                         case 15:
                         case 16:
                             if (rhT == 0) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
-                            if (rhT == 72) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co4 + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
+                            if (rhT == 72) if (co != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[2] + "," + co + "," + pro.Bass[1] + "," + pro.Acc[2];  pro.di++; }
 
                             if (rhT == 24) if (co0 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co0 + "," + pro.Acc[1] + "," + pro.Acc[2];  pro.di++; }
                             if (rhT == 24) if (co1 != 0) { pro.data4[pro.di] = "3," + y + "," + pro.MTrack[3] + "," + co1 + "," + pro.Acc[1] + "," + pro.Acc[2];  pro.di++; }
