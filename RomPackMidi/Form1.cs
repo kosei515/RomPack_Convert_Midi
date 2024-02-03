@@ -25,7 +25,7 @@ namespace RomPackMidi
         public int[,,] data2 = new int[30, 3, 10000];
         public int[,] data3 = new int[3, 1000000];
         public string[] data4 = new string[10000000];
-        public int line0, p = 0, b, di = 0, da = 0, rn = 0, num = 0, log = 0;
+        public int line0, p = 0, b, di = 0, da = 0, rn = 0, num = 0, log = 0, maxL = 0;
         public string FileName = "RomMidi";
         string MakeMidi = ".\\midi4.exe";
 
@@ -47,7 +47,7 @@ namespace RomPackMidi
         public int[] MTrack = new int[5] {3, 4, 5, 6, 2}; // M1 M2 CodeBass CodeAcc CodeM
         public int CodeM = 1; // CodeM On1 Off0
         public int CodeV = 0; // CodeM Vol
-        public int Rev = 0; // Reverb
+        public int Rev = 30; // Reverb
 
         public string OpFile;
         public byte[,] SongList = new byte[30,100000];
@@ -119,6 +119,7 @@ namespace RomPackMidi
             button6.Enabled = false;
             checkBox1.Checked = true;
             checkBox2.Checked = true;
+            checkBox6.Checked = true;
         }
 
         public void textBox1_TextChanged(object sender, EventArgs e)
@@ -143,25 +144,31 @@ namespace RomPackMidi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Run
-            textBox2.Text = "";
-            ConvertSys ConSys = new ConvertSys(this);
-            this.DataCon();
-            p = 0;
-            di = 0;
-            ConSys.SetCon();
-            if (checkBox1.Checked == true) ConSys.NoteCon();
-            if (checkBox2.Checked == true) ConSys.CodeCon();
-            da = di;
-            for (int r = 0; r < da; r++) textBox2.Text += (data4[r] + "\r\n");
-          
+            if (comboBox1.SelectedIndex != -1 || (!(string.IsNullOrEmpty(textBox1.Text)) && comboBox1.SelectedIndex == -1))
+            {
+                //Run
+                textBox2.Text = "";
+                ConvertSys ConSys = new ConvertSys(this);
+                this.DataCon();
+                p = 0;
+                di = 0;
+                maxL = 0;
+                ConSys.SetCon();
+                if (checkBox1.Checked == true) ConSys.NoteCon();
+                if (checkBox2.Checked == true) ConSys.CodeCon();
+                da = di;
+                for (int r = 0; r < da; r++) textBox2.Text += (data4[r] + "\r\n");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Save
-            rn = 1; ;
-            SaveF();
+            if (!string.IsNullOrEmpty(textBox2.Text))
+            {
+                //Save
+                rn = 1;
+                SaveF();
+            }
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -213,7 +220,7 @@ namespace RomPackMidi
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex != -1)
+            if (comboBox1.SelectedIndex != -1 || (!(string.IsNullOrEmpty(textBox1.Text)) && comboBox1.SelectedIndex == -1))
             {
                 if (checkBox5.Checked == false)
                 {
@@ -267,6 +274,7 @@ namespace RomPackMidi
                 this.DataCon();
                 p = 0;
                 di = 0;
+                maxL = 0;
                 ConSys.SetCon();
                 if (checkBox1.Checked == true) ConSys.NoteCon();
                 if (checkBox2.Checked == true) ConSys.CodeCon();
@@ -380,6 +388,12 @@ namespace RomPackMidi
             Properties.Settings.Default.Save();
         }
 
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox6.Checked == true) Rev = 30;
+            else Rev = 0;
+        }
+
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
@@ -400,12 +414,14 @@ namespace RomPackMidi
                     log = 1;
                     comboBox1.SelectedIndex = u;
                     b = Convert.ToInt32(comboBox1.SelectedItem);
-                    textBox3.Text = (Path.GetFileNameWithoutExtension(OpFile)) + "_" + b;
+                    if (b <= 9) textBox3.Text = (Path.GetFileNameWithoutExtension(OpFile)) + "_0" + b;
+                    if (b >= 10) textBox3.Text = (Path.GetFileNameWithoutExtension(OpFile)) + "_" + b;
 
                     ConvertSys ConSys = new ConvertSys(this);
                     this.DataCon();
                     p = 0;
                     di = 0;
+                    maxL = 0;
                     ConSys.SetCon();
                     if (checkBox1.Checked == true) ConSys.NoteCon();
                     if (checkBox2.Checked == true) ConSys.CodeCon();
@@ -474,7 +490,11 @@ namespace RomPackMidi
                     textBox1.Text += d0;
                 }
             }
-            if (checkBox4.Checked == true) textBox3.Text = (Path.GetFileNameWithoutExtension(OpFile)) + "_" + b;
+            if (checkBox4.Checked == true)
+            {
+                if (b <= 9) textBox3.Text = (Path.GetFileNameWithoutExtension(OpFile)) + "_0" + b;
+                if (b >= 10) textBox3.Text = (Path.GetFileNameWithoutExtension(OpFile)) + "_" + b;
+            }
         }
 
         private void checkBox5_CheckedChanged(object sender, EventArgs e)

@@ -332,7 +332,7 @@ namespace RomPackMidi
                 byte byAux = (byte)((pro.data1[0, x] & 0xf0) >> 4);
                 byte byAux2 = (byte)(pro.data1[0, x] & 0x0f);
 
-                if ((byAux2 >= 0x1) && (byAux2 <= 0xC) && (byAux >= 0x3) && (byAux <= 6))
+                if ((byAux2 >= 0x1) && (byAux2 <= 0xC) && (byAux >= 0x2) && (byAux <= 6))
                 {
                     switch (pro.data1[0, x])
                     {
@@ -667,7 +667,7 @@ namespace RomPackMidi
 
                 if (pro.data1[0, x] == 0xF0 && p == 0)
                 {
-                    //pro.data4[pro.di] = "5," + t + "\r\n"; pro.di++;
+                    if (t > pro.maxL) pro.maxL = t;
                     pro.data4[pro.di] = " //End\r\n\r\n";  pro.di++;
                     p = 1;
                     ch++;
@@ -816,7 +816,7 @@ namespace RomPackMidi
                 //Code
                 if ((byAux2 >= 0x1) && (byAux2 <= 0xC))
                 {
-                    if (pro.data1[0, x] != 0xF1)
+                    if (byAux != 0xF)
                     {
                         //Bass
                         switch (byAux2)
@@ -1303,8 +1303,9 @@ namespace RomPackMidi
                 //End
                 if (pro.data1[0, x] == 0xF0)
                 {
-                    pro.data4[pro.di] = "6," + t + ",0,120,0"; pro.di++;
-                    pro.data4[pro.di] = "5," + t + "\r\n"; pro.di++;
+                    if (t > pro.maxL) pro.maxL = t;
+                    pro.data4[pro.di] = "6," + pro.maxL + ",0,120,0"; pro.di++;
+                    pro.data4[pro.di] = "5," + pro.maxL + "\r\n"; pro.di++;
                     pro.data4[pro.di] = " //End\r\n\r\n";  pro.di++;
 
                     t3 = t;
@@ -1536,7 +1537,6 @@ namespace RomPackMidi
                         if ((byAux3 >= 0x0) && (byAux3 <= 0x7))
                         {
                             fil = 1;
-                            p = 1;
                             if (rh <= 14 && rhT <= 95) rhT += 96;
                             if (rh >= 15 && rhT <= 71) rhT += 72;
                             if (rh <= 14 && rhT >= 189) rhT -= 96;
@@ -1548,6 +1548,7 @@ namespace RomPackMidi
                             fil = 0;
                             pro.data4[pro.di] = " //Fill in OFF  " + pro.data3[2, z];  pro.di++;
                         }
+                        p = 1;
                     }
                     if ((byAux2 == 0xf))
                     {
@@ -1584,6 +1585,7 @@ namespace RomPackMidi
                                 pro.data4[pro.di] = " //Repeat 8";  pro.di++;
                                 break;
                         }
+                        p = 1;
                     }
                     if (pro.data3[0, z] == 0xF0)
                     {
@@ -2515,7 +2517,6 @@ namespace RomPackMidi
                         if ((byAux3 >= 0x0) && (byAux3 <= 0x7))
                         {
                             fil = 1;
-                            p = 1;
                             if (rh <= 14 && rhT <= 95) rhT += 96;
                             if (rh >= 15 && rhT <= 71) rhT += 72;
                             if (rh <= 14 && rhT >= 189) rhT -= 96;
@@ -2527,6 +2528,7 @@ namespace RomPackMidi
                             fil = 0;
                             pro.data4[pro.di] = " //Fill in OFF  " + pro.data3[2, z];  pro.di++;
                         }
+                        p = 1;
                     }
                     if ((byAux2 == 0xf))
                     {
@@ -2563,12 +2565,13 @@ namespace RomPackMidi
                                 pro.data4[pro.di] = " //Repeat 8";  pro.di++;
                                 break;
                         }
+                        p = 1;
                     }
 
 
                     if ((byAux2 >= 0x1) && (byAux2 <= 0xC))
                     {
-                        if (pro.data3[0, z] != 0xF1)
+                        if (byAux != 0xF)
                         {
                             //Bass
                             switch (byAux2)
@@ -2732,13 +2735,8 @@ namespace RomPackMidi
                             co3 = 0;
                             co4 = 0;
                         }
-
-                        // if (co != 0) { pro.data4[pro.di] = "3," + y + ", 4, " + co + pro.Bass[1] + t2;  pro.di++;
-                        // if (co0 != 0) { pro.data4[pro.di] = "3," + y + ", 5, " + co0 + pro.Acc[1] + t2;  pro.di++;
-                        // if (co1 != 0) { pro.data4[pro.di] = "3," + y + ", 5, " + co1 + pro.Acc[1] + t2;  pro.di++;
-                        // if (co2 != 0) { pro.data4[pro.di] = "3," + y + ", 5, " + co2 + pro.Acc[1] + t2;  pro.di++;
-                        // if (co3 != 0) { pro.data4[pro.di] = "3," + y + ", 5, " + co3 + pro.Acc[1] + t2;  pro.di++;
                     }
+
                     // End
                     if (pro.data3[0, z] == 0xF0)
                     {

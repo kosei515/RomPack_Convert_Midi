@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RomPackMidi
 {
@@ -21,7 +22,7 @@ namespace RomPackMidi
             System.IO.FileStream fs = new System.IO.FileStream(BinFile,System.IO.FileMode.Open,System.IO.FileAccess.Read);
             byte[] bs = new byte[fs.Length];
             fs.Read(bs, 0, bs.Length);
-            
+            int num1 = bs.Length;
 
             if (!((bs[0] == 0xA5 || bs[0] == 0x5A) && bs[1] == 0x00))
             {
@@ -57,14 +58,18 @@ namespace RomPackMidi
 
             pro.num = bs[6];
             int k = 2;
-            int p = 0, q = 0;
+            int p = 0, q = 0, num2 = 0;
 
             for (int i = 0; i < pro.num; i++)
             {
                 int m = 0;
                 p = 0;
                 q = 0;
-                while (!(bs[k - 2] == 0x10 && bs[k - 1] == 0x00 && bs[k] == 0x00)) { k++; }
+                while (!(bs[k - 2] == 0x10 && bs[k - 1] == 0x00 && bs[k] == 0x00)) 
+                {
+                    if (k >= num1) goto LOOPEND;
+                    k++; 
+                }
                 pro.SongList[i, m] = bs[k - 2];
                 pro.SongList[i, m + 1] = bs[k - 1];
                 pro.SongList[i, m + 2] = bs[k];
@@ -76,6 +81,7 @@ namespace RomPackMidi
                 k++;
                 while (!(bs[k - 2] == 0xF0 && p == 2))
                 {
+                    if (k >= num1) goto LOOPEND;
                     pro.SongList[i, m] = bs[k];
                     pro.data2[i, p, q] = bs[k];
                     p++;
@@ -91,7 +97,11 @@ namespace RomPackMidi
                 pro.data2[i, 0, q] = bs[k - 2];
                 q++;
                 m++;
-                while (!((bs[k - 2] == 0x10 || (bs[k - 3] == 0x00 && bs[k + 1] == 0x60)) && bs[k - 1] == 0x00 && bs[k] == 0x00)) { k++; }
+                while (!((bs[k - 2] == 0x10 || (bs[k - 3] == 0x00 && bs[k + 1] == 0x60)) && bs[k - 1] == 0x00 && bs[k] == 0x00)) 
+                {
+                    if (k >= num1) goto LOOPEND;
+                    k++; 
+                }
                 pro.SongList[i, m] = bs[k - 2];
                 pro.SongList[i, m + 1] = bs[k - 1];
                 pro.SongList[i, m + 2] = bs[k];
@@ -104,6 +114,7 @@ namespace RomPackMidi
                 p = 0;
                 while (!(bs[k - 2] == 0xF0 && bs[k] == 0x00 && p == 2))
                 {
+                    if (k >= num1) goto LOOPEND;
                     pro.SongList[i, m] = bs[k];
                     pro.data2[i, p, q] = bs[k];
                     p++;
@@ -119,7 +130,11 @@ namespace RomPackMidi
                 pro.data2[i, 0, q] = bs[k - 2];
                 q++;
                 m++;
-                while (!(bs[k - 1] == 0x10 && bs[k] == 0x00)) { k++; }
+                while (!(bs[k - 1] == 0x10 && bs[k] == 0x00)) 
+                {
+                    if (k >= num1) goto LOOPEND;
+                    k++; 
+                }
                 pro.SongList[i, m] = bs[k - 1];
                 pro.SongList[i, m + 1] = bs[k];
                 pro.data2[i, 0, q] = bs[k - 1];
@@ -131,6 +146,7 @@ namespace RomPackMidi
                 int n = 0;
                 while (!(bs[k - 1] == 0xF0 && n >= 8 && p == 1))
                 {
+                    if (k >= num1) goto LOOPEND;
                     pro.SongList[i, m] = bs[k];
                     pro.data2[i, p, q] = bs[k];
                     p++;
@@ -147,6 +163,13 @@ namespace RomPackMidi
                 pro.SongLen[i] = m + 1;
                 pro.SongLen2[i] = q + 1;
                 pro.comboBox1.Items.Add(i + 1);
+                num2 = i + 1;
+            }
+        LOOPEND:
+          if(pro.num != num2) 
+            {
+                MessageBox.Show("The actual number of songs recorded was less than the number of songs.\r\n実際の収録曲数は曲数よりも少ないです。\r\n" + pro.num + " → " + num2, "The number of songs", MessageBoxButtons.OK, MessageBoxIcon.None);
+                pro.num = num2;
             }
         }
 
