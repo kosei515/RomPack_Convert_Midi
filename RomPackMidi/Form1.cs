@@ -22,7 +22,7 @@ namespace RomPackMidi
     {
  
         public int[,] data1 = new int[3, 100000];
-        public int[,,] data2 = new int[30, 3, 10000];
+        public int[,,] data2 = new int[40, 3, 10000];
         public int[,] data3 = new int[3, 1000000];
         public string[] data4 = new string[10000000];
         public int line0, p = 0, b, di = 0, da = 0, rn = 0, num = 0, log = 0, maxL = 0;
@@ -50,9 +50,9 @@ namespace RomPackMidi
         public int Rev = 30; // Reverb
 
         public string OpFile;
-        public byte[,] SongList = new byte[30,100000];
-        public int[] SongLen = new int[30];
-        public int[] SongLen2 = new int[30];
+        public byte[,] SongList = new byte[40,100000];
+        public int[] SongLen = new int[40];
+        public int[] SongLen2 = new int[40];
 
 
 
@@ -507,7 +507,7 @@ namespace RomPackMidi
         {
 
             FileName = textBox3.Text;
-            string file = "..\\..\\..\\RomMidi.txt";
+            string file = ".\\RomMidi.txt";
             StreamWriter sw = new StreamWriter(file, false, Encoding.GetEncoding("utf-8"));
             for (int r = 0; r < da; r++)
             {
